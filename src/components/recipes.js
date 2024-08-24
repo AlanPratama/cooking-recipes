@@ -11,12 +11,12 @@ import Loading from "./loading";
 import { CachedImage } from "../helpers/image";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Recipes({ categories, meals }) {
+export default function Recipes({ activeCategory, categories, meals }) {
     const navigation = useNavigation()
   return (
     <View className="mx-4 space-y-3">
-      <Text style={{ fontSize: hp(3) }} className="font-bold text-neutral-600">
-        Recipes
+      <Text style={{ fontSize: hp(3) }} className="font-semibold text-neutral-600">
+        Recipes: {activeCategory}
       </Text>
       <View>
         {categories.length === 0 || meals.length === 0 ? (
@@ -79,7 +79,7 @@ const RecipeCard = ({ item, i, navigation }) => {
         /> */}
 
         <Text
-          style={{ fontSize: hp(1.5) }}
+          style={{ fontSize: hp(1.8) }}
           className="font-semibold ml-2 text-neutral-600"
         >
           {item.strMeal.length > 20

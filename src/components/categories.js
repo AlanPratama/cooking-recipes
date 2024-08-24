@@ -16,7 +16,7 @@ export default function Categories({ categories, activeCategory, handleChangeCat
         >
             {categories.map((cat, i) => {
                 let isActive = cat.strCategory == activeCategory
-                let activeButtonClass = isActive ? " bg-amber-400 " : " bg-black/10 "
+                let activeButtonClass = isActive ? " bg-pink-300 " : " bg-black/10 "
                 return (
                     <TouchableOpacity
                         key={i}

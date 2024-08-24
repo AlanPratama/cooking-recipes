@@ -1,18 +1,20 @@
 // HomeScreen.js
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, Text, TextInput, View } from 'react-native';
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/outline"
+import { BellIcon, MagnifyingGlassIcon, UserGroupIcon } from "react-native-heroicons/outline"
 import Categories from '../components/categories';
 import axios from 'axios';
 import Recipes from '../components/recipes';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
 
   const [activeCategory, setActiveCategory] = useState("Beef")
   const [categories, setCategories] = useState([])
   const [meals, setMeals] = useState([])
+  const navigation = useNavigation()
 
   useEffect(() => {
     getCategories()
@@ -63,23 +65,23 @@ export default function HomeScreen() {
         {/* AVATAR AND BELL */}
 
         <View className="mx-4 flex-row justify-between items-center mb-2">
-          <Image source={require("../../assets/favicon.png")} style={{ height: hp(5), width: hp(5.5) }} />
-          <BellIcon size={hp(4)} color={"gray"}/>
+          <Image source={require("../../assets/chef.png")} style={{ height: hp(5), width: hp(5.5) }} />
+          <TouchableOpacity onPress={() => navigation.navigate("Founders")}><UserGroupIcon size={hp(4)} color={"#f472b6"}/></TouchableOpacity>
         </View>
 
         {/* GREETING AND PUNCHLINE */}
         <View className="mx-4 space-y-2 mb-2">
-          <Text style={{ fontSize: hp(1.7) }} className="text-neutral-600">Hello, Alan</Text>
+          {/* <Text style={{ fontSize: hp(1.7) }} className="text-neutral-600">Hello, </Text> */}
           <View>
-            <Text style={{ fontSize: hp(3.8) }} className="font-semibold text-neutral-600">Make your own food,</Text>
+            <Text style={{ fontSize: hp(3.8) }} className="font-bold capitalize text-neutral-600">Make your own food,</Text>
           </View>
-          <Text style={{ fontSize: hp(3.8) }} className="font-semibold text-neutral-600">
-            stay at <Text className="text-amber-400">home</Text>
+          <Text style={{ fontSize: hp(3.8) }} className="font-bold capitalize text-neutral-600">
+            stay at <Text className="text-pink-400">home</Text>
           </Text>
         </View>
 
         {/* SEARCH BAR */}
-        <View className="mx-4 flex-row items-center rounded-full bg-black/5 p-[6px]">
+        {/* <View className="mx-4 flex-row items-center rounded-full bg-black/5 p-[6px]">
           <TextInput
             placeholder='Search any recipe'
             placeholderTextColor={"gray"}
@@ -90,7 +92,7 @@ export default function HomeScreen() {
           <View className="bg-white rounded-full p-3">
             <MagnifyingGlassIcon size={hp(2.7)} strokeWidth={3} color={"gray"}/>
           </View>
-        </View>
+        </View> */}
 
         {/* CATEGORIES */}
         <View>
@@ -99,7 +101,7 @@ export default function HomeScreen() {
 
         {/* RECIPES */}
         <View>
-            <Recipes meals={meals} categories={categories}/>
+            <Recipes meals={meals} activeCategory={activeCategory} categories={categories}/>
         </View>
 
       </ScrollView>
