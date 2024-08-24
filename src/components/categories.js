@@ -24,15 +24,15 @@ export default function Categories({ categories, activeCategory, handleChangeCat
                         className="flex items-center space-y-1"
                     >
                         <View className={`rounded-full p-[6px] ${activeButtonClass }`}>
-                            {/* <Image 
+                            <Image 
                                 source={{ uri: cat.strCategoryThumb }} style={{ width: hp(6), height: hp(6) }} 
                                 className="rounded-full"
-                            /> */}
-                            <CachedImage
+                            />
+                            {/* <CachedImage
                                 uri={cat.strCategoryThumb} 
                                 style={{ width: hp(6), height: hp(6) }} 
                                 className="rounded-full"
-                            />
+                            /> */}
                         </View>
                         <Text style={{ fontSize: hp(1.6) }} className="text-neutral-600">{cat.strCategory}</Text>
                     </TouchableOpacity>
